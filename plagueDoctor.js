@@ -25,7 +25,7 @@ function PlagueDoctor(game) {
 
     this.deathAnimationDown = new Animation(ASSET_MANAGER.getAsset("./img/PlagueDoctor_SpriteSheet.png"), 0, 896, 64, 64, 0.35, 4, false, false);
     this.deathAnimationUp = new Animation(ASSET_MANAGER.getAsset("./img/PlagueDoctor_SpriteSheet.png"), 0, 960, 64, 64, 0.35, 4, false, false);
-    this.speed = 100;
+    this.speed = 80;
     this.dead = false;
     this.isWalking = false;
     this.facingDirection = "down";
