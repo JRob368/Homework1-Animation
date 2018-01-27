@@ -77,6 +77,7 @@ GameEngine.prototype.startInput = function () {
         if (String.fromCharCode(e.which) === 'I') that.I = true;
         if (String.fromCharCode(e.which) === 'O') that.O = true;
         if (String.fromCharCode(e.which) === ' ') that.space = true;
+
         e.preventDefault();
     }, false);
 
@@ -91,6 +92,7 @@ GameEngine.prototype.addEntity = function (entity) {
 GameEngine.prototype.draw = function () {
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     this.ctx.save();
+
     for (var i = 0; i < this.entities.length; i++) {
         this.entities[i].draw(this.ctx);
     }

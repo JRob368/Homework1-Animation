@@ -56,6 +56,7 @@ Animation.prototype.isDone = function () {
 
 function Background(game) {
     Entity.call(this, game, 0, 400);
+    this.img = ASSET_MANAGER.getAsset("./img/tileSprite.png");
     this.radius = 200;
 
 }
@@ -67,6 +68,13 @@ Background.prototype.update = function () {
 }
 
 Background.prototype.draw = function (ctx) {
+
+
+    for (var i = 0; i < 3; i++) {
+        for (var j = 0; j < 9; j++) {
+            ctx.drawImage(this.img, 394*i,159*j);
+        }
+    }
 
 }
 
@@ -80,9 +88,8 @@ var ASSET_MANAGER = new AssetManager();
 
 ASSET_MANAGER.queueDownload("./img/PlagueDoctor_SpriteSheet.png");
 ASSET_MANAGER.queueDownload("./img/PD_Spell_SpriteSheet.png");
-
+ASSET_MANAGER.queueDownload("./img/tileSprite.png");
 ASSET_MANAGER.downloadAll(function () {
-    console.log("starting up da sheild");
     var canvas = document.getElementById('gameWorld');
     var ctx = canvas.getContext('2d');
 

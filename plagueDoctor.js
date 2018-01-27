@@ -23,11 +23,11 @@ function PlagueDoctor(game) {
     this.spellAnimationRight = new Animation(ASSET_MANAGER.getAsset("./img/PD_Spell_SpriteSheet.png"), 0, 192, 64, 64, 0.2, 3, true, false);
 
 
-    this.deathAnimationDown = new Animation(ASSET_MANAGER.getAsset("./img/PlagueDoctor_SpriteSheet.png"), 0, 896, 64, 64, 0.4, 4, false, false);
-    this.deathAnimationUp = new Animation(ASSET_MANAGER.getAsset("./img/PlagueDoctor_SpriteSheet.png"), 0, 960, 64, 64, 0.4, 4, false, false);
+    this.deathAnimationDown = new Animation(ASSET_MANAGER.getAsset("./img/PlagueDoctor_SpriteSheet.png"), 0, 896, 64, 64, 0.35, 4, false, false);
+    this.deathAnimationUp = new Animation(ASSET_MANAGER.getAsset("./img/PlagueDoctor_SpriteSheet.png"), 0, 960, 64, 64, 0.35, 4, false, false);
+    this.speed = 100;
     this.dead = false;
-    this.radius = 100;
-
+    this.isWalking = false;
     this.facingDirection = "down";
     this.standingStill = true;
     this.attacking = false;
@@ -46,6 +46,8 @@ PlagueDoctor.prototype.update = function () {
     }
     if (this.game.K) this.dead = true;
 
+    if (this.game.O) this.isAngry = !this.isAngry;
+
     if (!this.dead) {
 
         if (this.currentProjectile === null || this.currentProjectile.removeFromWorld) {
@@ -53,28 +55,56 @@ PlagueDoctor.prototype.update = function () {
             if (this.game.W) {
                 this.facingDirection = "up";
                 this.standingStill = false;
+                this.isWalking = true;
             }
             if (this.game.A) {
                 this.facingDirection = "left";
                 this.standingStill = false
+                this.isWalking = true;
             }
             if (this.game.S) {
                 this.facingDirection = "down";
                 this.standingStill = false;
+                this.isWalking = true;
             }
             if (this.game.D) {
                 this.facingDirection = "right";
                 this.standingStill = false;
+                this.isWalking = true;
             }
             if (this.game.I) {
                 this.standingStill = true;
+                this.isWalking = false;
             }
         }
 
         if (this.game.space) {
             this.attacking = true;
             this.standingStill = true;
+            this.isWalking = false;
         }
+
+        if(this.isWalking) {
+            switch(this.facingDirection) {
+                case "up":
+                    this.y -= this.game.clockTick * this.speed;
+                    if (this.y < -50) this.y = 800;
+                    break;
+                case "down":
+                    this.y += this.game.clockTick * this.speed;
+                    if (this.y > 800) this.y = -50;
+                    break;
+                case "left":
+                    this.x -= this.game.clockTick * this.speed;
+                    if (this.x < -50) this.x = 800;
+                    break;
+                case"right":
+                    this.x += this.game.clockTick * this.speed;
+                    if (this.x > 800) this.x = -50;
+                    break;
+            }
+        }
+
 
         if (this.attacking) {
             this.standingStill = true;

@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Game Project Shell</title>
+    <title>Animation</title>
     <script type="text/javascript" src="./gameengine.js"></script>
     <script type="text/javascript" src="./assetmanager.js"></script>
     <script type="text/javascript" src="./main.js"></script>
@@ -11,6 +11,20 @@
     <script type="text/javascript" src="./projectile.js"></script>
 </head>
 <body>
+    <h1>James Roberts</h1>
+    <h2>Assignment 1: Animation</h2>
+    <p>This showcases the sprite that I created for my group project and it's full range of animations.
+    The Plague Doctor has animations to walk, shoot and idle in four directions. Shooting creates a new entity with its own animations.
+        If aggroed on a player, the Plague Doctor's eyes will flash while walking.
+    Dying while facing left,right or down triggers one death animation and dying while facing up plays another.</p>
+    <h4>Controls:</h4>
+        <ul>
+            <li> W,S,A,D - walk directionally</li>
+            <li>SPACE - fire spell (no movements are allowed until the spell finishes firing)</li>
+            <li>I - Stop current animation and stands idle</li>
+            <li>O: turn on/off the aggro animations while walking (the eye flashing is very faint)</li>
+            <li> K: Play death animation and remove entity from world</li>
+        </ul>
     <canvas id="gameWorld" tabindex="1" width="800" height="800" style="border: 1px solid brown; background: lightskyblue"></canvas>
 </body>
 </html>
